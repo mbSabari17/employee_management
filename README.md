@@ -26,7 +26,7 @@ This API streamlines the management of employee records, providing essential fun
 #### Servers
 Production:[SwaggerHub API Auto Mocking]
 
-Development:http://localhost:3000/api/v1
+Development:http://localhost:8080/api/v1
 
 
 #### Endpoints Overview
@@ -64,7 +64,7 @@ Development:http://localhost:3000/api/v1
 | `email`     | String   | Email address (format: email)           |
 
 - ### Link -
- https://github.com/mbSabari17/employee_details/blob/2163898f9d2419c83fe1c6dabf7e83241aadf339/api/employee_management.yaml
+https://github.com/mbSabari17/employee_management/blob/b87ecf01c6995baddc332d2a990b060ba40f0318/api/employee_management.yaml
 
 ## Test Cases for Employee Management API
 
@@ -90,7 +90,7 @@ These test cases provide a comprehensive approach to validating the core functio
 - The API must maintain data integrity, ensuring accurate retrieval, creation, updating, and deletion of employee records.
 
 - ### Link -
-  https://github.com/mbSabari17/employee_details_tests/blob/39328fa275d5b47c1e9812da7c01e8ad5592109e/src/test/java/tests/employee_details.feature
+- https://github.com/mbSabari17/employee_management/blob/b87ecf01c6995baddc332d2a990b060ba40f0318/src/test/java/com/example/employee_management/feature/TestCase.feature
 
 ## Database Schema for Employee Management
 
@@ -114,6 +114,28 @@ This schema supports the functionality of the Employee Management API, facilitat
 - **Structured Data Management:** The schema allows for organized storage and retrieval of employee records.
 - **Data Integrity:** Constraints ensure that only valid data is entered, preventing inconsistencies.
 - **Scalability:** The schema is designed to accommodate a growing number of employee records easily.
+
+## Employee Management API
+
+This is a Spring Boot-based RESTful API designed for managing employee records. It supports CRUD (Create, Read, Update, Delete) operations and uses Spring Data JPA to interact with a relational database (e.g., PostgreSQL).
+
+### Features
+
+- **Create Employee** (`POST /employees`): Allows the creation of a new employee record.
+- **Get All Employees** (`GET /employees`): Retrieves a list of all employees.
+- **Get Employee by ID** (`GET /employees/{id}`): Retrieves a specific employee's details by ID.
+- **Update Employee** (`PUT /employees/{id}`): Updates the details of an existing employee.
+- **Delete Employee** (`DELETE /employees/{id}`): Deletes an employee by their ID.
+
+### Technologies Used
+
+- **Spring Boot**: Framework for building the API.
+- **Spring Data JPA**: To interact with the database using JPA repositories.
+- **PostgreSQL** (or other relational databases): For storing employee records.
+- **RESTful API**: Follows REST principles for data access.
+
+- ### Link -
+- https://github.com/mbSabari17/employee_management/tree/b87ecf01c6995baddc332d2a990b060ba40f0318/src/main/java/com/example/employee_management
 
 ## Questions or Clarifications
 
