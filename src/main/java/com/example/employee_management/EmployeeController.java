@@ -4,6 +4,7 @@ import com.example.employee_management.repository.EmployeeRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.*;
 
 @RestController
@@ -68,5 +69,18 @@ public class EmployeeController {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+// to do return 404 when filetred employee is empty
+    // GET /employees/department
+    @GetMapping("/department")
+    public ResponseEntity<List<Employees>> filterByDepartment(@RequestParam String name) {
+       List<Employees> filterdEmployees = EmployeeRepository.findByDepartment(name);
+        return new ResponseEntity<>(filterdEmployees,HttpStatus.OK);
+    }
+    // GET /employees/department and position
+    @GetMapping("/filter")
+    public ResponseEntity<List<Employees>> filterByDepartmentAndPosition(@RequestParam String department,@RequestParam String position) {
+        List<Employees> filteredEmployees = EmployeeRepository.findByDepartmentAndPosition(department, position);
+        return new ResponseEntity<>(filteredEmployees,HttpStatus.OK);
     }
 }
