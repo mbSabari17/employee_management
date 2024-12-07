@@ -70,17 +70,33 @@ public class EmployeeController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-// to do return 404 when filetred employee is empty
+
+    // to do return 404 when filetred employee is empty
     // GET /employees/department
     @GetMapping("/department")
     public ResponseEntity<List<Employees>> filterByDepartment(@RequestParam String name) {
-       List<Employees> filterdEmployees = EmployeeRepository.findByDepartment(name);
-        return new ResponseEntity<>(filterdEmployees,HttpStatus.OK);
+        List<Employees> filterdEmployees = EmployeeRepository.findByDepartment(name);
+        return new ResponseEntity<>(filterdEmployees, HttpStatus.OK);
     }
+
     // GET /employees/department and position
     @GetMapping("/filter")
-    public ResponseEntity<List<Employees>> filterByDepartmentAndPosition(@RequestParam String department,@RequestParam String position) {
+    public ResponseEntity<List<Employees>> filterByDepartmentAndPosition(@RequestParam String department, @RequestParam String position) {
         List<Employees> filteredEmployees = EmployeeRepository.findByDepartmentAndPosition(department, position);
-        return new ResponseEntity<>(filteredEmployees,HttpStatus.OK);
+        return new ResponseEntity<>(filteredEmployees, HttpStatus.OK);
+    }
+
+    // UPDATE /employees/department
+    @PatchMapping("/{id}/department")
+    public ResponseEntity<Employees> updateEmployee(@PathVariable Integer id, @RequestBody String department) {
+        Optional<Employees> updateEmployee = EmployeeRepository.findById(id);
+        if (updateEmployee.isPresent()) {
+            Employees employee = updateEmployee.get();
+            employee.setDepartment(department);
+            Employees updatedEmployee = EmployeeRepository.save(employee);
+            return new ResponseEntity<>(updatedEmployee, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 }
