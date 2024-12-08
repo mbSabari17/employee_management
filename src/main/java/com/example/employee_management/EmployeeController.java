@@ -99,4 +99,9 @@ public class EmployeeController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+    @PostMapping("/bulk")
+    public ResponseEntity<List<Employees>> createBulkEmployees(@RequestBody List<Employees> employees) {
+        List<Employees> savedEmployees = EmployeeRepository.saveAll(employees);
+        return new ResponseEntity<>(savedEmployees, HttpStatus.CREATED);
+    }
 }
