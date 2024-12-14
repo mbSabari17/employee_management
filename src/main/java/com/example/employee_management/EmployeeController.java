@@ -1,6 +1,7 @@
 package com.example.employee_management;
 
 import com.example.employee_management.repository.EmployeeRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -103,5 +104,11 @@ public class EmployeeController {
     public ResponseEntity<List<Employees>> createBulkEmployees(@RequestBody List<Employees> employees) {
         List<Employees> savedEmployees = EmployeeRepository.saveAll(employees);
         return new ResponseEntity<>(savedEmployees, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/count")
+    public ResponseEntity<List<Map<String, Integer>>> countByDepartment() {
+        List<Map<String, Integer>> employeecount = EmployeeRepository.countByDepartment();
+        return new ResponseEntity<>(employeecount, HttpStatus.OK);
     }
 }
